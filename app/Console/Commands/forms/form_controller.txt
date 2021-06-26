@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Http\Requests\Api\{$name}Request;
+use App\Services\{$name}\ListService;
+use App\Services\{$name}\DetailService;
+use App\Services\{$name}\DeleteService;
+use App\Services\{$name}\CreateService;
+use App\Services\{$name}\UpdateService;
+
+class {$name}Controller extends Controller
+{
+
+    public function getLists(
+        ListService $listService,
+        Request $request
+    )
+    {
+        return response()->json(api_resualt_common($listService->handle($request)), Response::HTTP_OK);
+    }
+
+    public function storage(
+        CreateService $createService,
+        {$name}Request $request
+    )
+    {
+        return response()->json(api_resualt_common($createService->handle($request)), Response::HTTP_OK);
+    }
+
+    public function getDetail(
+        DetailService $detailService,
+        Request $request
+    )
+    {
+        return response()->json(api_resualt_common($detailService->handle($request)), Response::HTTP_OK);
+    }
+
+    public function delete(
+        DeleteService $deleteServide,
+        Request $request
+    )
+    {
+        return response()->json(api_resualt_common($deleteServide->handle($request)), Response::HTTP_OK);
+    }
+
+    public function update(
+        UpdateService $updateService,
+        {$name}Request $request
+    )
+    {
+        return response()->json(api_resualt_common($updateService->handle($request)), Response::HTTP_OK);
+    }
+}

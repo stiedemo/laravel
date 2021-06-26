@@ -36,7 +36,7 @@ class AuthController extends Controller
 
         return response()->json([
             'status' => false,
-            'message' => 'Invalid Email or Password',
+            'message' => 'Tài khoản hoặc mật khẩu không chính xác',
         ], Response::HTTP_UNAUTHORIZED);
     }
 
@@ -63,7 +63,7 @@ class AuthController extends Controller
     {
         Auth::logout();
         return response()->json(api_resualt_common([
-            'message' => 'User logged out successfully'
+            'message' => 'Đăng xuất tài khoản thành công'
         ]));
     }
 }

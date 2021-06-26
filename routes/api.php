@@ -25,3 +25,10 @@ Route::group(['prefix' => 'auth'],function() {
         Route::post('token-refresh', 'AuthController@refresh');
     });
 });
+
+# Request Resource Managers
+Route::group(['middleware' => 'auth.jwt'],function() {
+# Start route resource
+#:end-routes-api-resource:#
+# End route resource
+});

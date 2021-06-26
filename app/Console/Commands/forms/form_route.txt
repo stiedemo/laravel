@@ -1,0 +1,10 @@
+Route::group(['prefix'=>'{$name_strtoupper}'], function(){
+    Route::get('/', '{$name}Controller@getLists');
+    Route::post('/', '{$name}Controller@storage');
+    Route::get('/{id}', '{$name}Controller@getDetail')
+        ->where(['id' => '[0-9]+']);
+    Route::delete('/{id}', '{$name}Controller@delete')
+        ->where(['id' => '[0-9]+']);
+    Route::put('/{id}', '{$name}Controller@update')
+        ->where(['id' => '[0-9]+']);
+});

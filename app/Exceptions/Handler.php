@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 use Illuminate\Http\Response;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Handler extends ExceptionHandler
 {
@@ -44,6 +45,9 @@ class Handler extends ExceptionHandler
         if($request->route() != null) {
             if(strpos($request->route()->getPrefix(),'api') !== false) {
                 try {
+                    if ($exception instanceof ModelNotFoundException) {
+                        return response()->json(api_errors_common("Không tìm thấy dữ liệu", []), Response::HTTP_NOT_FOUND);
+                    }
                     $returnCode = $exception->getStatusCode();
                 } catch (Throwable $th) {
                     $returnCode = Response::HTTP_BAD_REQUEST;
@@ -53,7 +57,7 @@ class Handler extends ExceptionHandler
                 return parent::render($request, $exception);
             }
         } else {
-            return response()->json(api_errors_common("HTTP PAGE NOT FOUND", []), Response::HTTP_NOT_FOUND);
+            return response()->json(api_errors_common("Đường dẫn không tồn tại", []), Response::HTTP_NOT_FOUND);
         }
     }
 }

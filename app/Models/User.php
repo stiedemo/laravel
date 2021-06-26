@@ -7,7 +7,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use App\Models\Authencation as Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
@@ -24,7 +23,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  *
  * @package App\Models
  */
-class User extends Model
+class User extends BaseClass
 {
 	use LogsActivity;
 	protected $table = 'users';

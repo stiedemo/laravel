@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Services\{$name};
+
+use App\Services\AbstractService;
+use App\Repositories\{$name}Repository;
+
+class {$type}Service extends AbstractService
+{
+
+    /**
+     * @var {$name}Repository
+     */
+    private $repository;
+
+    /**
+     * CreateService constructor.
+     * @param {$name}Repository $repository
+     */
+
+    public function __construct({$name}Repository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    /**
+     * @return mixed
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
+     */
+    public function handle($request)
+    {
+        {$content_function}
+    }
+
+}
+?>

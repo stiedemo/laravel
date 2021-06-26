@@ -2,6 +2,28 @@
 
 
 /**
+ * get_id_from_request
+ *
+ * @param  mixed $request
+ * @return void
+ */
+function get_id_from_request($request)
+{
+    if($request->has('id')){
+        if(isset($request->id)) {
+            return $request->id;
+        }
+        return $request->get('id');
+    }
+    foreach ($request->route()->parameters as $parameter) {
+        if(is_numeric($parameter)) {
+            return $parameter;
+        }
+    }
+    return $request['id'];
+}
+
+/**
  * get_free_disk_root
  *
  * @param  mixed $class
